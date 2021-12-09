@@ -1,6 +1,6 @@
 package ru.gbjava2lesson1;
 
-// Задания 1 - 4 выполнены.
+// Задания 1 - 4 выполнены
 
 public class MainClass {
     public static void main(String[] args) {
