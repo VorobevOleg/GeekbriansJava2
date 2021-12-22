@@ -13,24 +13,19 @@ public class PhoneBook {
         this.phoneNumber.add(phoneNumber);
     }
 
-    public void add(String lastName, String phoneNumber) {
-        this.lastName = lastName;
-        this.phoneNumber.add(phoneNumber);
-    }
-
     public String getLastName() {
         return lastName;
     }
 
-    public Set<String> getPhoneNumber() {
-        return phoneNumber;
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber.add(phoneNumber);
     }
 
     @Override
     public String toString() {
-        return "PhoneBook{" +
-                "lastName='" + lastName + '\'' +
-                ", phoneNumber=" + phoneNumber +
+        return "Справочник - {" +
+                "Фамилия: '" + lastName + '\'' +
+                ", номер телефона: " + phoneNumber +
                 '}';
     }
 }

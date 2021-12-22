@@ -31,23 +31,52 @@ public class Main {
         arr2[2] = new PhoneBook("Сидоров", "+79521382125");
 
         List<PhoneBook> lPB = new ArrayList<>();
+
+        // способ добавить №1
         lPB.addAll(Arrays.asList(arr2));
+
+        // способ добавить №2
         lPB.add(new PhoneBook("Калиткин", "+79522345678"));
-        lPB.add(new PhoneBook("Калиткин", "+79522345679"));
+        lPB.add(new PhoneBook("Веткин", "+79522345679"));
 
-
+        // способ добавить №3
+        add(lPB, "Петров", "+79527773322");
+        add(lPB, "Карась", "+75552348877");
 
         for (int i = 0; i < lPB.size(); i++) {
             System.out.println(lPB.get(i));
         }
 
+        // поиск по фамилии
+        String serchLastName = "Петров"; // фамилия для поиска
+        get(lPB, serchLastName);
+
     }
 
-    public void get (PhoneBook pB, String lastName) {
-
-        if (pB.getLastName().equals(lastName)) {
-            System.out.println();
+    public static void add(List<PhoneBook> lPB, String lastName, String phoneNumber) {
+        boolean check = false;
+        for (int i = 0; i < lPB.size(); i++) {
+            if (lPB.get(i).getLastName().equals(lastName)) {
+                lPB.get(i).setPhoneNumber(phoneNumber);
+                check = true;
+            }
         }
-        System.out.println("Нет такой фамилии в справочнике");
+        if (!check) {
+            lPB.add(new PhoneBook(lastName, phoneNumber));
+        }
+    }
+
+    public static void get(List<PhoneBook> lPB, String lastName) {
+        boolean check = false;
+        System.out.println("Результат поиска по фамилии: " + lastName);
+        for (int i = 0; i < lPB.size(); i++) {
+            if (lPB.get(i).getLastName().equals(lastName)) {
+            System.out.println(lPB.get(i));
+            check = true;
+            }
+        }
+        if (!check) {
+            System.out.println("Нет такой фамилии в справочнике");
+        }
     }
 }
