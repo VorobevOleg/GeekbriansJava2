@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sam3.Controller">
+   <children>
+      <Button mnemonicParsing="false" text="Button" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0" />
+      <Button mnemonicParsing="false" text="Button" AnchorPane.bottomAnchor="20.0" AnchorPane.rightAnchor="20.0" />
+      <CheckBox mnemonicParsing="false" text="CheckBox1" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="60.0" />
+      <CheckBox mnemonicParsing="false" text="CheckBox2" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="100.0" />
+      <CheckBox mnemonicParsing="false" text="CheckBox3" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="140.0" />
+      <Button mnemonicParsing="false" text="Button" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0" AnchorPane.topAnchor="200.0" />
+   </children>
+</AnchorPane>

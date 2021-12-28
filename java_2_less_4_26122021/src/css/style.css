@@ -1,0 +1,32 @@
+.root{
+    -fx-font-size: 18;
+    /*-fx-background-image: url("https://media.istockphoto.com/photos/decorated-christmas-tree-with-gift-boxes-isolated-on-white-background-picture-id521231713");*/
+    -fx-background-image: url("/image/12.jpg");
+    -fx-background-size: 100% 100%;
+}
+
+.button{
+    -fx-background-color: gold;
+}
+
+.button:hover{
+    -fx-background-color: coral;
+    -fx-font-weight: bold;
+}
+
+#btnAdd{
+    -fx-background-color: #22ff00;
+    -fx-font-size: 20;
+}
+
+#btnAdd:hover{
+    -fx-background-color: #00d4ff;
+    -fx-font-size: 22;
+}
+
+.text-area{
+    -fx-text-fill: blue;
+    -fx-highlight-fill: #00d4ff;
+    -fx-highlight-text-fill: #8800ff;
+    -fx-control-inner-background: rgba(255, 238, 192, 0.49);
+}
