@@ -13,7 +13,7 @@
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
     </padding>
-    <TextArea fx:id="mainTextArea" VBox.vgrow="ALWAYS"/>
+    <TextArea fx:id="mainTextArea" editable="false" VBox.vgrow="ALWAYS"/>
     <HBox spacing="10">
     <TextField fx:id="mainTextField" HBox.hgrow="ALWAYS" promptText="Введите сообщение..." onAction="#onSendButtonClick"/>
     <Button text="Send" HBox.hgrow="ALWAYS" onAction="#onSendButtonClick"/>

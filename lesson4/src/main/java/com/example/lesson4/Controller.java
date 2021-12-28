@@ -14,5 +14,6 @@ public class Controller {
     protected void onSendButtonClick() {
         mainTextArea.appendText(mainTextField.getText() + "\n");
         mainTextField.setText("");
+        mainTextField.requestFocus();
     }
 }
