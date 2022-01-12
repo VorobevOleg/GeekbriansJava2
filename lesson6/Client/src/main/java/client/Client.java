@@ -12,8 +12,8 @@ public class Client {
     private final int PORT = 8189;
 
     private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
+    private DataInputStream inClient;
+    private DataOutputStream outClient;
     Scanner scanner;
 
     public Client () {
@@ -21,14 +21,14 @@ public class Client {
             socket = new Socket(ADRESS,PORT);
             System.out.println("Client started");
 
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+            inClient = new DataInputStream(socket.getInputStream());
+            outClient = new DataOutputStream(socket.getOutputStream());
 
 
             new Thread(() -> {
                 try {
                     while (true) {
-                        String str = in.readUTF();
+                        String str = inClient.readUTF();
                         if (str.equals("/end")) {
                             break;
                         }
@@ -50,7 +50,7 @@ public class Client {
                 try {
                     while (true) {
                         scanner =  new Scanner(System.in);
-                        out.writeUTF(scanner.nextLine());
+                        outClient.writeUTF(scanner.nextLine());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

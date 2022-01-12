@@ -11,8 +11,8 @@ public class Server {
 
     private ServerSocket server;
     private Socket socket;
-    private DataInputStream in;
-    private DataOutputStream out;
+    private DataInputStream inServer;
+    private DataOutputStream outServer;
     Scanner scanner;
     private final int PORT = 8189;
 
@@ -38,13 +38,13 @@ public class Server {
 
 
         try {
-            in = new DataInputStream(socket.getInputStream());
-            out = new DataOutputStream(socket.getOutputStream());
+            inServer = new DataInputStream(socket.getInputStream());
+            outServer = new DataOutputStream(socket.getOutputStream());
 
             new Thread(() -> {
                 try {
                     while (true) {
-                        String str = in.readUTF();
+                        String str = inServer.readUTF();
                         if (str.equals("/end")) {
                             break;
                         }
@@ -67,7 +67,7 @@ public class Server {
                 try {
                     while (true) {
                         scanner =  new Scanner(System.in);
-                        out.writeUTF(scanner.nextLine());
+                        outServer.writeUTF(scanner.nextLine());
                     }
                 } catch (IOException e) {
                     e.printStackTrace();
