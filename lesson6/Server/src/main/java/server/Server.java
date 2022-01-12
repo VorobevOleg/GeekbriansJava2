@@ -13,7 +13,7 @@ public class Server {
     private Socket socket;
     private DataInputStream inServer;
     private DataOutputStream outServer;
-    Scanner scanner;
+    private Scanner scanner;
     private final int PORT = 8189;
 
     public Server () {
@@ -21,10 +21,9 @@ public class Server {
             server = new ServerSocket(PORT);
             System.out.println("Server started");
 
-            while (true) {
                 socket = server.accept();
                 System.out.println("Client '" + socket.getRemoteSocketAddress() + "' connected");
-            }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -65,8 +64,8 @@ public class Server {
 
             new Thread(() -> {
                 try {
+                    scanner =  new Scanner(System.in);
                     while (true) {
-                        scanner =  new Scanner(System.in);
                         outServer.writeUTF(scanner.nextLine());
                     }
                 } catch (IOException e) {

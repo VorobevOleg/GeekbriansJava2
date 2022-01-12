@@ -14,7 +14,7 @@ public class Client {
     private Socket socket;
     private DataInputStream inClient;
     private DataOutputStream outClient;
-    Scanner scanner;
+    private Scanner scanner;
 
     public Client () {
         try {
@@ -48,8 +48,8 @@ public class Client {
 
             new Thread(() -> {
                 try {
+                    scanner =  new Scanner(System.in);
                     while (true) {
-                        scanner =  new Scanner(System.in);
                         outClient.writeUTF(scanner.nextLine());
                     }
                 } catch (IOException e) {
