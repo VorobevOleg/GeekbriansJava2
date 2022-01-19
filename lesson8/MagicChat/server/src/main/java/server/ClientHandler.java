@@ -6,6 +6,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 
 public class ClientHandler {
     private Server server;
@@ -26,16 +27,15 @@ public class ClientHandler {
 
             new Thread(() -> {
                 try {
-//                    socket.setSoTimeout(0);
+                    socket.setSoTimeout(120000);
                     //цикл аутентификации
                     while (true) {
                         String str = in.readUTF();
 
-                        if (str.equals("/end")) {
-                            sendMsg("/end");
+                        if (str.equals(ServiceMessages.END)) {
+                            sendMsg(ServiceMessages.END);
                             break;
                         }
-//                        if (str.startsWith("/auth")) {
                         if (str.startsWith(ServiceMessages.AUTH)) {
                             String[] token = str.split(" ", 3);
                             if (token.length < 3) {
@@ -59,16 +59,16 @@ public class ClientHandler {
                                 sendMsg("Неверный логин / пароль");
                             }
                         }
-                        if (str.startsWith("/reg")) {
+                        if (str.startsWith(ServiceMessages.REG)) {
                             String[] token = str.split(" ", 4);
                             if (token.length < 4) {
                                 continue;
                             }
                             if (server.getAuthService()
                                     .registration(token[1], token[2], token[3])) {
-                                sendMsg("/reg_ok");
+                                sendMsg(ServiceMessages.REG_OK);
                             } else {
-                                sendMsg("/reg_no");
+                                sendMsg(ServiceMessages.REG_NO);
                             }
                         }
                     }
@@ -77,11 +77,11 @@ public class ClientHandler {
                         String str = in.readUTF();
 
                         if (str.startsWith("/")) {
-                            if (str.equals("/end")) {
-                                sendMsg("/end");
+                            if (str.equals(ServiceMessages.END)) {
+                                sendMsg(ServiceMessages.END);
                                 break;
                             }
-                            if (str.startsWith("/w")) {
+                            if (str.startsWith(ServiceMessages.W)) {
                                 String[] token = str.split(" ", 3);
                                 if (token.length < 3) {
                                     continue;
@@ -94,8 +94,10 @@ public class ClientHandler {
                         }
                     }
 
-                    //SocketTimeoutException
-                } catch (IOException e) {
+                } catch (SocketTimeoutException e) {
+                    sendMsg(ServiceMessages.END);
+                }
+                catch (IOException e) {
                     e.printStackTrace();
                 } finally {
                     System.out.println("Client disconnect!");
