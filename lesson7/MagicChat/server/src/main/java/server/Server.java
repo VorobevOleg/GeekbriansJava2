@@ -60,10 +60,15 @@ public class Server {
         }
     }
 
-//    public void privateMsg (ClientHandler sender, String recipient, String msg) {
-//        String message = String.format("[ %s ]: %s", sender.getNickname(), msg);
-//
-//    }
+    public void privateMsg (ClientHandler sender, String recipient, String msg) {
+        String message = String.format("[ %s ]: %s", sender.getNickname(), msg);
+        for (ClientHandler c : clients) {
+            if (c.getNickname().equals(recipient) || c == sender) {
+                c.sendMsg(message);
+            }
+        }
+
+    }
 
     public AuthService getAuthService() {
         return authService;
